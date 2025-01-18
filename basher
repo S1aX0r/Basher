@@ -87,6 +87,7 @@ whereis gzip
 whereis tar
 whereis wireshark
 whereis tshark
+whereis mail
 
 echo "-----------------------------------------"
 
@@ -181,6 +182,30 @@ if [ -n "$found_tools" ]; then
 else
 
 	echo "No Attack Vectors Found"
+
+fi
+
+echo "-----------------------------------------"
+
+echo "Do You Want to Remove Tracks?"
+
+read response
+
+if [ "$response" == "yes" ]; then
+
+	echo "Beginning Anti-Forensics"
+	if [ "$SHELL" == "/usr/bin/zsh" ]; then
+		shred -n 1000 ~/.zsh_history
+
+	else
+
+		shred -n 1000 ~/.bash_history
+
+	fi
+
+else
+
+	echo "Removing Tracks is Recommended"
 
 fi
 
