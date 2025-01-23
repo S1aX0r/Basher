@@ -1,6 +1,6 @@
 # Basher
 
-Sorry if this isn't Felix's original goal, I can just make my own repo
+Sorry if this isn't S1aX0r's original goal, I can just make my own repo
 
 Two modes:
 1. generate a baseline of all the directories, file content, hashes, etc.
