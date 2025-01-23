@@ -1,0 +1,19 @@
+Instructions for installation
+
+BASH
+
+###############################################
+git clone https://github.com/S1aX0r/Basher.git
+cd Basher
+chmod +x basher
+./basher
+###############################################
+
+PYTHON
+
+###############################################
+git clone https://github.com/S1aX0r/Basher.git
+cd Basher
+pip install -r requirements.txt
+python3 main.py
+###############################################
