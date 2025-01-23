@@ -10,3 +10,9 @@ Auto prompt the user for things it finds are suspicious
 
 *TODO*
 1. Have multiple baselines, select the right one for the system
+
+
+
+*CONTRIBUTIONS*
+Big shout out to Zinkelburger for contributing guidance and advice with this bash and python script. 
+You're the best! -S1aX0r ;)
