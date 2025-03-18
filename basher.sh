@@ -5,6 +5,11 @@ echo "Finding Vulnerable SUID's"
 find / -perm -4000 -type f 2>/dev/null
 
 echo "-----------------------------------------"
+echo "Finding Vulnerable SUID binaries"
+echo
+find / -perm -u=s -type f -print
+
+echo "-----------------------------------------"
 
 echo "Checking for Writable Directories in PATH"
 echo $PATH | tr ':' '\n' | xargs -I {} find {} -writable 2>/dev/null
@@ -197,6 +202,7 @@ if [ -n "$found_tools" ]; then
 
 	echo "Attack Vectors Found: $found_tools"
 	echo "Use Vectors to Attack & Pivot"
+	
 else
 
 	echo "No Attack Vectors Found"
@@ -260,12 +266,27 @@ read answer
 
 if [ $answer == "y" ]; then
 
-wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64s | sh
+wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64s
+
+chmod +x pspy64s
+./pspy64s
 
 else
 
-	echo
+echo
 
 fi
+
+echo "-----------------------------------------"
+
+echo
+
+echo "Checking authentication logs"
+
+echo 
+
+cat /var/log/auth.log
+
+echo "-----------------------------------------"
 
 echo "Thanks for Using Basher!"
